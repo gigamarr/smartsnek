@@ -6,7 +6,7 @@ class Dictionary:
     base_url = "https://www.dictionary.com/browse/"
 
     @catch_404
-    def get_and_soupify(self, word, misspelling=False):
+    def get_and_soupify(self, word):
         response = urllib.request.urlopen(self.base_url + word).read()
         soup = BeautifulSoup(response, 'html.parser')
         return soup
