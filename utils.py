@@ -7,7 +7,7 @@ def catch_404(func):
             return func(*args, **kwargs)
         except HTTPError as e:
             if e.code == 404:
-                print(f"Couldn't find definition for word {args[1]}.")
+                print("Couldn't find definition for word {}.".format(args[1]))
                 sys.exit()
             raise e
     return wrapper
