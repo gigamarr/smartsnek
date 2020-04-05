@@ -34,11 +34,9 @@ class Word(Dictionary):
     @property
     @get_attr_or_empty
     def definitions(self):
-        return [str(i[0]) + '. ' + i[1].text + '\n\n' for i in enumerate(self.soup.find_all('div', class_='e1q3nk1v3'), start=1)]
+        return ["{}. {}\n".format(index, value.text.lstrip()) for index, value in enumerate(self.soup.find_all('div', class_='e1q3nk1v3'), start=1)]
 
     def __str__(self):
         return f"""{self.word} -- {self.pronunciation} - {self.word_type} \n\n {" ".join(self.definitions)}
                 """
-
-
 
