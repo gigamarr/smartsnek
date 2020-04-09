@@ -37,5 +37,4 @@ class Word(Dictionary):
         return ["{}. {}\n".format(index, value.get_text(strip=True)) for index, value in enumerate(self.soup.find_all('div', class_='e1q3nk1v3'), start=1)]
 
     def __str__(self):
-        return """{} -- {} - {} \n\n{}""".format(self.word, self.pronunciation, self.word_type, "".join(self.definitions))
-
+        return "{} -- {} - {} \n\n{}".format(self.word, self.pronunciation, self.word_type, "".join(self.definitions))
