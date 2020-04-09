@@ -13,9 +13,9 @@ class Dictionary:
 
 class Word(Dictionary):
 
-    def __init__(self, word, quantity=None):
+    def __init__(self, word, count=None):
         self.soup = super().get_and_soupify(word)
-        self.quantity = quantity
+        self.count = count
 
     @property
     @get_attr_or_empty
@@ -35,7 +35,7 @@ class Word(Dictionary):
     @property
     @get_attr_or_empty
     def definitions(self):
-        return ["{}. {}\n".format(index, value.get_text(strip=True)) for index, value in enumerate(self.soup.find_all('div', class_='e1q3nk1v3')[0:self.quantity], start=1)]
+        return ["{}. {}\n".format(index, value.get_text(strip=True)) for index, value in enumerate(self.soup.find_all('div', class_='e1q3nk1v3'), start=1)]
 
     def __str__(self):
-        return "{} -- {} - {} \n\n{}".format(self.word, self.pronunciation, self.word_type, "".join(self.definitions))
+        return "{} -- {} - {} \n\n{}".format(self.word, self.pronunciation, self.word_type, "".join(self.definitions[0:self.count]))
