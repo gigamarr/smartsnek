@@ -39,12 +39,13 @@ class Word(Dictionary):
     def definitions(self):
         return ["{}. {}\n".format(index, value.get_text(strip=True)) for index, value in enumerate(self.soup.find_all('div', class_='e1q3nk1v3'), start=1)]
 
-    def write(self, data):
-        with open(self.write_path+'/output', 'a+') as f:
-            f.write(data)
     @property
     def representation(self):
         return "{} -- {} - {} \n\n{}".format(self.word, self.pronunciation, self.word_type, "".join(self.definitions[0:self.count]))
+
+    def write(self, data):
+        with open(self.write_path+'/output', 'a+') as f:
+            f.write(data)
 
     def __str__(self):
         return self.word
