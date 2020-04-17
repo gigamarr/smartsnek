@@ -22,15 +22,15 @@ def main():
     if args.write:
         if args.index:
             try:
-                word.write("{} - {} ({}) - [\n{} ]\n\n".format(word.word, word.pronunciation, word.word_type, word.definitions[args.index-1]))
+                word.write("{} - {} ({}) - [\n{} ]\n\n".format(word, word.pronunciation, word.word_type, word.definitions[args.index-1]))
             except IndexError:
                 print("Definition with given index not found.")
                 sys.exit()
         else:
-            word.write("{} - {} ({}) - [\n{} ]\n\n".format(word.word, word.pronunciation, word.word_type, ''.join(word.definitions)))
+            word.write("{} - {} ({}) - [\n{} ]\n\n".format(word, word.pronunciation, word.word_type, ''.join(word.definitions)))
 
     if not args.silent:
-        print(word)
+        print(word.representation)
 
 if __name__ == '__main__':
     main()
