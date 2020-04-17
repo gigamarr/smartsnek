@@ -1,3 +1,4 @@
+import os
 import urllib.request
 from bs4 import BeautifulSoup
 from utils import catch_404, get_attr_or_empty
@@ -12,6 +13,7 @@ class Dictionary:
         return soup
 
 class Word(Dictionary):
+    write_path = os.path.dirname(os.path.realpath(__file__))
 
     def __init__(self, word, count=None):
         self.soup = super().get_and_soupify(word)
@@ -36,6 +38,11 @@ class Word(Dictionary):
     @get_attr_or_empty
     def definitions(self):
         return ["{}. {}\n".format(index, value.get_text(strip=True)) for index, value in enumerate(self.soup.find_all('div', class_='e1q3nk1v3'), start=1)]
+
+    def write(self, data):
+        with open(self.write_path+'/output', 'a+') as f:
+            f.write(data)
+        f.close()
 
     def __str__(self):
         return "{} -- {} - {} \n\n{}".format(self.word, self.pronunciation, self.word_type, "".join(self.definitions[0:self.count]))
