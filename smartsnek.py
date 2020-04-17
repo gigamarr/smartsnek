@@ -42,7 +42,6 @@ class Word(Dictionary):
     def write(self, data):
         with open(self.write_path+'/output', 'a+') as f:
             f.write(data)
-        f.close()
 
     def __str__(self):
         return "{} -- {} - {} \n\n{}".format(self.word, self.pronunciation, self.word_type, "".join(self.definitions[0:self.count]))
